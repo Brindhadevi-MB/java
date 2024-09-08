@@ -1,0 +1,32 @@
+import java.net.SocketOption;
+import java.util.Scanner;
+
+public class Functions {
+	public static void prodId(int a[]) {
+		int ans[]=new int [a.length];
+		for(int i=0;i<ans.length;i++) {
+			int prod=1;
+			for(int j=0;j<ans.length;j++) {
+				if(i!=j)
+					prod=prod*a[j];
+			}
+		ans[i]=prod;
+		System.out.println(ans[i]);
+		}
+		
+	}
+	
+	public static void main(String[]args) {
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int[] arr=new int[n];
+		for(int i=0;i<n;i++) {
+			 arr[i]=sc.nextInt();
+			 
+		}
+		prodId(arr);
+		
+		
+	}
+
+}
