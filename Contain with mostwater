@@ -1,21 +1,19 @@
-import java.util.*;
+ import java.util.*;
 
 class Solution {
     public int maxArea(int[] heights) {
-        int maxwater=0;
-        for(int i=0;i<heights.length;i++){
-            for(int j=i+1;j<heights.length;j++){
-                int currentwater=(int)(Math.min(heights[i],heights[j]));
-                if(currentwater>maxwater){
-                    maxwater=currentwater;
-                }
-                
-            }
-            
-        }
-        return maxwater;
-        
-       
+       int left=0,right=heights.length-1;
+       int area=-1;
+       while(left<right){
+      area=Math.max(area,(Math.min(heights[left],heights[right])*(right-left)));
+           if(heights[left]<heights[right]){
+               left++;
+           }
+           else if(heights[left]>=heights[right]){
+               right--;
+           }
+       }
+       return area;
     }
 }
 
