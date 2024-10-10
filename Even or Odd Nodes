@@ -1,0 +1,77 @@
+import java.util.*;
+
+class Solution {
+    static LinkedListNode sortList(LinkedListNode head){
+       if(head==null|| head.next==null){
+       return head;
+       }
+       LinkedListNode evenhead=null,eventail=null;
+       LinkedListNode oddhead=null,oddtail=null;
+       LinkedListNode current=head;
+       while(current!=null){
+           if(current.data%2==0){
+               if(evenhead==null){
+                   evenhead=current;
+                   eventail=current;
+               }
+               else{
+                   eventail.next=current;
+                   eventail=eventail.next;
+               }
+           }
+           else{
+               if(oddhead==null){
+                   oddhead=current;
+                   oddtail=current;
+               }
+               else{
+                   oddtail.next=current;
+                   oddtail=oddtail.next;
+               }
+           }
+           current=current.next;
+       }
+       if(evenhead==null){
+           return oddhead;
+       }
+       if(oddhead==null){
+          return evenhead;
+       }
+       eventail.next=oddhead;
+       oddtail.next=null;
+       return evenhead;
+    }
+}
+
+class LinkedListNode  {
+    int data;
+    LinkedListNode next;
+
+    public LinkedListNode(int data)  {
+        this.data = data;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws Throwable {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        LinkedListNode head = new LinkedListNode(sc.nextInt());
+        LinkedListNode a = head;
+        for(int i=1;i<n;i++) {
+            LinkedListNode temp = new LinkedListNode(sc.nextInt());
+            a.next = temp;
+            a = temp;
+        }
+        LinkedListNode ans = Solution.sortList(head);
+        for(int i=0;i<n;i++) {
+            if(i == n-1) {
+                System.out.println(ans.data);
+            }
+            else {
+                System.out.print(ans.data + " ");
+            }
+            ans = ans.next;
+        }
+    }
+}
