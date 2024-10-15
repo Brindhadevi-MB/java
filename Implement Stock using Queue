@@ -1,0 +1,55 @@
+import java.io.*;
+import java.util.*;
+
+class Stack {
+    //Write your code here
+    private Queue<Integer> q1=new LinkedList<>();
+    private Queue<Integer> q2=new LinkedList<>();
+    
+
+    // Push operation
+   
+    public void push(int a) {
+        q1.add(a);
+        
+    }
+
+    // Pop operation
+     public int pop() {
+        //Write your code here
+        if(q1.isEmpty()){
+            return -1;
+        }
+        while(q1.size()>1){
+            q2.add(q1.poll());
+    }
+    int top=q1.poll();
+    while(!q2.isEmpty()){
+        q1.add(q2.poll());
+    }
+    return top;
+      
+    }
+}
+
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        Stack g = new Stack();
+        int q = sc.nextInt();
+        StringBuilder result = new StringBuilder();
+
+        while (q > 0) {
+            int queryType = sc.nextInt();
+            if (queryType == 1) {
+                int a = sc.nextInt();
+                g.push(a); // Call push function
+            } else if (queryType == 2) {
+                result.append(g.pop()).append(" "); // Call pop function and append result
+            }
+            q--;
+        }
+
+        System.out.println(result.toString().trim());
+    }
+}
